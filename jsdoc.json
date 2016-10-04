@@ -17,14 +17,14 @@
       ],
       "examples": [],
       "returns": {
-        "type": "MemoryDriver",
+        "type": "SqliteDriver",
         "description": ""
       }
     }
   ],
   "classes": [
     {
-      "name": "SqliteDriver",
+      "name": "SqlitSqliteDrivereDriver",
       "description": "",
       "extends": [
         "SequelizeDriver"
@@ -33,7 +33,7 @@
       "virtual": false,
       "fires": "",
       "constructor": {
-        "name": "SqliteDriver",
+        "name": "SqlitSqliteDrivereDriver",
         "description": "Abstract driver",
         "parameters": [],
         "examples": []
@@ -44,7 +44,24 @@
           "access": "",
           "virtual": false,
           "description": "Connect driver",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "filename",
+              "type": "string",
+              "description": "",
+              "default": "var/clay.db",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "options",
+              "type": "Object",
+              "description": "",
+              "default": "{}",
+              "optional": true,
+              "nullable": ""
+            }
+          ],
           "examples": [],
           "returns": {
             "type": "Promise",
