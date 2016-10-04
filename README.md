@@ -89,6 +89,41 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 
 <!-- Section from "doc/guides/02.Usage.md.hbs" End -->
 
+<!-- Section from "doc/guides/03.API.md.hbs" Start -->
+
+<a name="section-doc-guides-03-a-p-i-md"></a>
+
+API
+---------
+
+# clay-driver-sqlite@1.0.1
+
+Clay driver for sqlite
+
++ Functions
+  + [create(args)](#clay-driver-sqlite-function-create)
+
+## Functions
+
+<a class='md-heading-link' name="clay-driver-sqlite-function-create" ></a>
+
+### create(args) -> `SqliteDriver`
+
+Create driver instance
+
+| Param | Type | Description |
+| ----- | --- | -------- |
+| args | * |  |
+
+
+
+
+
+
+
+
+<!-- Section from "doc/guides/03.API.md.hbs" End -->
+
 
 <!-- Sections Start -->
 

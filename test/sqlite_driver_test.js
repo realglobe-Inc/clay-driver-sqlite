@@ -22,7 +22,7 @@ describe('sqlite-driver', function () {
   it('Sqlite driver', () => co(function * () {
     let driver = new SqliteDriver()
 
-    yield driver.connect(`${__dirname}/../foo/bar/baz.db`)
+    yield driver.connect(`${__dirname}/../tmp/foo/bar/baz.db`)
 
     yield driver.create('/foo/bar/baz', {
       key: 'baz',
