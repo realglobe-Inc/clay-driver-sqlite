@@ -17,7 +17,11 @@ const writeout = require('writeout')
 apeTasking.runTasks('build', [
   // Generate jsdoc.json
   () => co(function * () {
-    let src = 'lib/*.js'
+    let src = [
+      'lib/*.js',
+      require.resolve('clay-driver-base/lib/driver.js'),
+      require.resolve('clay-driver-sequelize/lib/sequelize_driver.js')
+    ].join(' ')
     let dest = 'jsdoc.json'
     let data = execSync(`
     jsdoc ${src} -t templates/haruki -d console -q format=JSON

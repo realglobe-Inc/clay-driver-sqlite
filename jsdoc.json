@@ -24,7 +24,7 @@
   ],
   "classes": [
     {
-      "name": "SqlitSqliteDrivereDriver",
+      "name": "SqliteDriver",
       "description": "",
       "extends": [
         "SequelizeDriver"
@@ -33,30 +33,140 @@
       "virtual": false,
       "fires": "",
       "constructor": {
-        "name": "SqlitSqliteDrivereDriver",
+        "name": "SqliteDriver",
+        "description": "Driver to save data into sqlite",
+        "parameters": [
+          {
+            "name": "filename",
+            "type": "string",
+            "description": "Filename to save",
+            "default": "",
+            "optional": "",
+            "nullable": ""
+          },
+          {
+            "name": "options",
+            "type": "Object",
+            "description": "Optional settings",
+            "default": "{}",
+            "optional": true,
+            "nullable": ""
+          }
+        ],
+        "examples": []
+      },
+      "functions": [
+        {
+          "name": "one",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "list",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "create",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "update",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "destroy",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "drop",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        }
+      ]
+    },
+    {
+      "name": "Driver",
+      "description": "",
+      "extends": [],
+      "access": "",
+      "virtual": true,
+      "fires": "",
+      "constructor": {
+        "name": "Driver",
         "description": "Abstract driver",
         "parameters": [],
         "examples": []
       },
       "functions": [
         {
-          "name": "connect",
+          "name": "one",
           "access": "",
           "virtual": false,
-          "description": "Connect driver",
+          "description": "Get single resource from namespace",
           "parameters": [
             {
-              "name": "filename",
+              "name": "namespace",
               "type": "string",
-              "description": "",
-              "default": "var/clay.db",
+              "description": "Namespace to work with",
+              "default": "",
               "optional": "",
               "nullable": ""
             },
             {
-              "name": "options",
-              "type": "Object",
-              "description": "",
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<ClayEntity>",
+            "description": "Found resource"
+          }
+        },
+        {
+          "name": "list",
+          "access": "",
+          "virtual": false,
+          "description": "List resource in namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namespace to work with",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "condition",
+              "type": "ListCondition",
+              "description": "List condition query",
               "default": "{}",
               "optional": true,
               "nullable": ""
@@ -64,18 +174,18 @@
           ],
           "examples": [],
           "returns": {
-            "type": "Promise",
-            "description": ""
+            "type": "Promise.<ClayCollection>",
+            "description": "Found resource collection"
           }
         },
         {
           "name": "create",
           "access": "",
           "virtual": false,
-          "description": "Create data with namepath",
+          "description": "Create data with namespace",
           "parameters": [
             {
-              "name": "namepath",
+              "name": "namespace",
               "type": "string",
               "description": "Namepath string",
               "default": "",
@@ -83,9 +193,9 @@
               "nullable": ""
             },
             {
-              "name": "data",
+              "name": "attributes",
               "type": "Object",
-              "description": "Resource data to create",
+              "description": "Resource attributes to create",
               "default": "",
               "optional": "",
               "nullable": ""
@@ -93,39 +203,18 @@
           ],
           "examples": [],
           "returns": {
-            "type": "Promise",
-            "description": ""
-          }
-        },
-        {
-          "name": "read",
-          "access": "",
-          "virtual": false,
-          "description": "Read data with namepath",
-          "parameters": [
-            {
-              "name": "namepath",
-              "type": "string",
-              "description": "Namepath string",
-              "default": "",
-              "optional": "",
-              "nullable": ""
-            }
-          ],
-          "examples": [],
-          "returns": {
-            "type": "Promise",
-            "description": ""
+            "type": "Promise.<ClayEntity>",
+            "description": "Created data"
           }
         },
         {
           "name": "update",
           "access": "",
           "virtual": false,
-          "description": "Update data with namepath",
+          "description": "Update data with namespace",
           "parameters": [
             {
-              "name": "namepath",
+              "name": "namespace",
               "type": "string",
               "description": "Namepath string",
               "default": "",
@@ -133,9 +222,17 @@
               "nullable": ""
             },
             {
-              "name": "data",
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "attributes",
               "type": "Object",
-              "description": "Resource data to create",
+              "description": "Resource attributes to update",
               "default": "",
               "optional": "",
               "nullable": ""
@@ -143,18 +240,47 @@
           ],
           "examples": [],
           "returns": {
-            "type": "Promise",
-            "description": ""
+            "type": "Promise.<ClayEntity>",
+            "description": "Updated data"
           }
         },
         {
-          "name": "delete",
+          "name": "destroy",
           "access": "",
           "virtual": false,
-          "description": "Delete data with namepath",
+          "description": "Delete data with namespace",
           "parameters": [
             {
-              "name": "namepath",
+              "name": "namespace",
+              "type": "string",
+              "description": "Namepath string",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<number>",
+            "description": "Destroyed count (0 or 1)"
+          }
+        },
+        {
+          "name": "drop",
+          "access": "",
+          "virtual": false,
+          "description": "Drop resource with namespace",
+          "parameters": [
+            {
+              "name": "namespace",
               "type": "string",
               "description": "Namepath string",
               "default": "",
@@ -164,8 +290,248 @@
           ],
           "examples": [],
           "returns": {
-            "type": "Promise",
-            "description": ""
+            "type": "Promise.<boolean>",
+            "description": "False if there were nothing to drop"
+          }
+        }
+      ]
+    },
+    {
+      "name": "SequelizeDriver",
+      "description": "",
+      "extends": [
+        "Driver"
+      ],
+      "access": "",
+      "virtual": false,
+      "fires": "",
+      "constructor": {
+        "name": "SequelizeDriver",
+        "description": "Abstract driver",
+        "parameters": [],
+        "examples": []
+      },
+      "functions": [
+        {
+          "name": "one",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "list",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "create",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "update",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "destroy",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "drop",
+          "access": "",
+          "virtual": false,
+          "description": "",
+          "parameters": [],
+          "examples": []
+        },
+        {
+          "name": "one",
+          "access": "",
+          "virtual": false,
+          "description": "Get single resource from namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namespace to work with",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<ClayEntity>",
+            "description": "Found resource"
+          }
+        },
+        {
+          "name": "list",
+          "access": "",
+          "virtual": false,
+          "description": "List resource in namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namespace to work with",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "condition",
+              "type": "ListCondition",
+              "description": "List condition query",
+              "default": "{}",
+              "optional": true,
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<ClayCollection>",
+            "description": "Found resource collection"
+          }
+        },
+        {
+          "name": "create",
+          "access": "",
+          "virtual": false,
+          "description": "Create data with namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namepath string",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "attributes",
+              "type": "Object",
+              "description": "Resource attributes to create",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<ClayEntity>",
+            "description": "Created data"
+          }
+        },
+        {
+          "name": "update",
+          "access": "",
+          "virtual": false,
+          "description": "Update data with namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namepath string",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "attributes",
+              "type": "Object",
+              "description": "Resource attributes to update",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<ClayEntity>",
+            "description": "Updated data"
+          }
+        },
+        {
+          "name": "destroy",
+          "access": "",
+          "virtual": false,
+          "description": "Delete data with namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namepath string",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            },
+            {
+              "name": "id",
+              "type": "ClayId",
+              "description": "Resource id",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<number>",
+            "description": "Destroyed count (0 or 1)"
+          }
+        },
+        {
+          "name": "drop",
+          "access": "",
+          "virtual": false,
+          "description": "Drop resource with namespace",
+          "parameters": [
+            {
+              "name": "namespace",
+              "type": "string",
+              "description": "Namepath string",
+              "default": "",
+              "optional": "",
+              "nullable": ""
+            }
+          ],
+          "examples": [],
+          "returns": {
+            "type": "Promise.<boolean>",
+            "description": "False if there were nothing to drop"
           }
         }
       ]

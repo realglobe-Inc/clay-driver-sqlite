@@ -96,7 +96,7 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@1.0.1
+# clay-driver-sqlite@2.0.0
 
 Clay driver for sqlite
 
@@ -133,7 +133,7 @@ Create driver instance
 
 License
 -------
-This software is released under the [MIT License](https://github.com/realglobe-Inc/clay-driver-sqlite/blob/master/LICENSE).
+This software is released under the [Apache-2.0 License](https://github.com/realglobe-Inc/clay-driver-sqlite/blob/master/LICENSE).
 
 <!-- LICENSE End -->
 
@@ -144,6 +144,12 @@ This software is released under the [MIT License](https://github.com/realglobe-I
 Links
 ------
 
++ [ClayDB][clay_d_b_url]
++ [Realglobe, Inc.][realglobe,_inc__url]
++ [Sequelize][sequelize_url]
 
+[clay_d_b_url]: https://github.com/realglobe-Inc/claydb
+[realglobe,_inc__url]: http://realglobe.jp
+[sequelize_url]: http://docs.sequelizejs.com/
 
 <!-- Links End -->
