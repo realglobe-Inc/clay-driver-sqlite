@@ -20,29 +20,49 @@ describe('sqlite-driver', function () {
   }))
 
   it('Sqlite driver', () => co(function * () {
-    let driver = new SqliteDriver()
+    let driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`)
 
-    yield driver.connect(`${__dirname}/../tmp/foo/bar/baz.db`)
-
-    yield driver.create('/foo/bar/baz', {
-      key: 'baz',
-      value: { hoge: 'This is hoge' },
-      at: new Date()
+    let created = yield driver.create('users', {
+      username: 'okunishinishi'
     })
-    {
-      let baz = yield driver.read('/foo/bar/baz')
-      assert.deepEqual(baz.value, { hoge: 'This is hoge' })
-    }
-    yield driver.update('/foo/bar/baz', {
-      value: { hoge: 'This is hoge2' }
+    let created2 = yield driver.create('users', {
+      username: 'hoge'
     })
-    {
-      let baz = yield driver.read('/foo/bar/baz')
-      assert.deepEqual(baz.value, { hoge: 'This is hoge2' })
-    }
-    yield driver.delete('/foo/bar/baz')
+    assert.ok(created2.id !== created.id)
+    assert.ok(created.id)
+    assert.equal(created.username, 'okunishinishi')
 
-    yield driver.disconnect()
+    let one = yield driver.one('users', created.id)
+
+    assert.equal(String(created.id), String(one.id))
+
+    let updated = yield driver.update('users', one.id, {
+      password: 'hogehoge'
+    })
+    assert.equal(String(updated.id), String(one.id))
+    assert.equal(updated.password, 'hogehoge')
+
+    let list01 = yield driver.list('users', {})
+    assert.deepEqual(list01.meta, { offset: 0, limit: 100, length: 2, total: 2 })
+
+    let list02 = yield driver.list('users', {
+      filter: { username: 'okunishinishi' }
+    })
+    assert.deepEqual(list02.meta, { offset: 0, limit: 100, length: 1, total: 1 })
+
+    let list03 = yield driver.list('users', {
+      page: { size: 1, number: 1 }
+    })
+    assert.deepEqual(list03.meta, { offset: 0, limit: 1, length: 1, total: 2 })
+
+    let destroyed = yield driver.destroy('users', one.id)
+    assert.equal(destroyed, 1)
+    let destroyed2 = yield driver.destroy('users', one.id)
+    assert.equal(destroyed2, 0)
+
+    assert.equal((yield driver.list('users')).meta.total, 1)
+    yield driver.drop('users')
+    assert.equal((yield driver.list('users')).meta.total, 0)
   }))
 })
 

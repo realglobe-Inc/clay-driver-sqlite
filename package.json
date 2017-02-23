@@ -1,11 +1,11 @@
 {
   "name": "clay-driver-sqlite",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Clay driver for sqlite",
   "main": "lib",
   "scripts": {
     "test": "node ./ci/test.js",
-    "prepublish": "node ./ci/build.js && node ./ci/shim.js && node ./ci/doc.js"
+    "prepare": "node ./ci/build.js && node ./ci/shim.js && node ./ci/doc.js"
   },
   "repository": "realglobe-Inc/clay-driver-sqlite",
   "keywords": [
@@ -16,35 +16,33 @@
     "email": "okunishinish@gmail.com",
     "url": "http://okunishitaka.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/realglobe-Inc/clay-driver-sqlite/issues"
   },
   "homepage": "https://github.com/realglobe-Inc/clay-driver-sqlite#readme",
   "dependencies": {
-    "abind": "^1.0.0",
-    "asfs": "^1.1.1",
-    "clay-constants": "^0.3.7",
-    "clay-driver-sequelize": "^1.0.0",
+    "clay-constants": "^1.2.1",
+    "clay-driver-sequelize": "^2.0.1",
     "co": "^4.6.0",
-    "sqlite3": "^3.1.4"
+    "mkdirp": "^0.5.1",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
-    "amocha": "^1.0.15",
+    "amocha": "^2.0.0",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
-    "ape-reporting": "^3.0.2",
     "ape-tasking": "^4.0.9",
-    "ape-tmpl": "^5.0.19",
-    "ape-updating": "^4.0.5",
+    "ape-tmpl": "^5.0.20",
+    "ape-updating": "^4.1.0",
     "coz": "^6.0.20",
     "injectmock": "^2.0.0",
-    "sg-templates": "^1.2.2",
-    "sg-travis": "^1.1.33"
+    "sg-templates": "^1.3.1",
+    "sugos-travis": "^2.0.7"
   },
   "engines": {
     "node": ">=6",
-    "npm": ">=3"
+    "npm": ">=4"
   },
   "publishConfig": {
     "registry": "https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-local"

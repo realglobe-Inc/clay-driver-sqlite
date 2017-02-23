@@ -96,12 +96,20 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@1.0.1
+# clay-driver-sqlite@2.0.0
 
 Clay driver for sqlite
 
 + Functions
   + [create(args)](#clay-driver-sqlite-function-create)
++ [SqliteDriver](clay-driver-sqlite-classes) Class
+  + [new SqliteDriver(filename, options)](#clay-driver-sqlite-classes-sqlite-driver-constructor)
+  + [driver.one()](#clay-driver-sqlite-classes-sqlite-driver-one)
+  + [driver.list()](#clay-driver-sqlite-classes-sqlite-driver-list)
+  + [driver.create()](#clay-driver-sqlite-classes-sqlite-driver-create)
+  + [driver.update()](#clay-driver-sqlite-classes-sqlite-driver-update)
+  + [driver.destroy()](#clay-driver-sqlite-classes-sqlite-driver-destroy)
+  + [driver.drop()](#clay-driver-sqlite-classes-sqlite-driver-drop)
 
 ## Functions
 
@@ -114,6 +122,61 @@ Create driver instance
 | Param | Type | Description |
 | ----- | --- | -------- |
 | args | * |  |
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes"></a>
+
+## SqliteDriver Class
+
+Driver to save data into sqlite
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-constructor" ></a>
+
+### new SqliteDriver(filename, options)
+
+Constructor of SqliteDriver class
+
+| Param | Type | Description |
+| ----- | --- | -------- |
+| filename | string | Filename to save |
+| options | Object | Optional settings |
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-one" ></a>
+
+### driver.one()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-list" ></a>
+
+### driver.list()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-create" ></a>
+
+### driver.create()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-update" ></a>
+
+### driver.update()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-destroy" ></a>
+
+### driver.destroy()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-drop" ></a>
+
+### driver.drop()
 
 
 
@@ -133,7 +196,7 @@ Create driver instance
 
 License
 -------
-This software is released under the [MIT License](https://github.com/realglobe-Inc/clay-driver-sqlite/blob/master/LICENSE).
+This software is released under the [Apache-2.0 License](https://github.com/realglobe-Inc/clay-driver-sqlite/blob/master/LICENSE).
 
 <!-- LICENSE End -->
 
@@ -144,6 +207,12 @@ This software is released under the [MIT License](https://github.com/realglobe-I
 Links
 ------
 
++ [ClayDB][clay_d_b_url]
++ [Realglobe, Inc.][realglobe,_inc__url]
++ [Sequelize][sequelize_url]
 
+[clay_d_b_url]: https://github.com/realglobe-Inc/claydb
+[realglobe,_inc__url]: http://realglobe.jp
+[sequelize_url]: http://docs.sequelizejs.com/
 
 <!-- Links End -->
