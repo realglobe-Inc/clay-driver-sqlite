@@ -4,7 +4,7 @@ Clay driver for sqlite
 
 + Functions
   + [create(args)](#clay-driver-sqlite-function-create)
-+ [SqliteDriver](clay-driver-sqlite-classes) Class
++ [`SqliteDriver`](clay-driver-sqlite-classes) Class
   + [new SqliteDriver(filename, options)](#clay-driver-sqlite-classes-sqlite-driver-constructor)
   + [driver.one()](#clay-driver-sqlite-classes-sqlite-driver-one)
   + [driver.list()](#clay-driver-sqlite-classes-sqlite-driver-list)
@@ -29,9 +29,14 @@ Create driver instance
 
 <a class='md-heading-link' name="clay-driver-sqlite-classes"></a>
 
-## SqliteDriver Class
+## `SqliteDriver` Class
 
 Driver to save data into sqlite
+
+**Extends**: 
+
++ `SequelizeDriver`
+
 
 
 <a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-constructor" ></a>
