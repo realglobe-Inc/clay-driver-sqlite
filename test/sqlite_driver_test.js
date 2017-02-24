@@ -4,6 +4,7 @@
  */
 'use strict'
 
+const clayDriverTests = require('clay-driver-tests')
 const SqliteDriver = require('../lib/sqlite_driver.js')
 const assert = require('assert')
 const co = require('co')
@@ -63,6 +64,11 @@ describe('sqlite-driver', function () {
     assert.equal((yield driver.list('users')).meta.total, 1)
     yield driver.drop('users')
     assert.equal((yield driver.list('users')).meta.total, 0)
+  }))
+
+  it('Run clayDriverTests', () => co(function * () {
+    let driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`)
+    yield clayDriverTests.run(driver)
   }))
 })
 
