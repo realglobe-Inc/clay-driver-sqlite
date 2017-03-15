@@ -79,7 +79,7 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 {
   const clayLump = require('clay-lump')
   let lump01 = clayLump({
-    driver: new SqliteDriver({})
+    driver: new SqliteDriver('var/lump/app.db')
   })
   /* ... */
 }
@@ -96,13 +96,13 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@2.0.0
+# clay-driver-sqlite@2.0.1
 
 Clay driver for sqlite
 
 + Functions
   + [create(args)](#clay-driver-sqlite-function-create)
-+ [`SqliteDriver`](clay-driver-sqlite-classes) Class
++ [`SqliteDriver`](#clay-driver-sqlite-classes) Class
   + [new SqliteDriver(filename, options)](#clay-driver-sqlite-classes-sqlite-driver-constructor)
   + [driver.one()](#clay-driver-sqlite-classes-sqlite-driver-one)
   + [driver.list()](#clay-driver-sqlite-classes-sqlite-driver-list)
@@ -110,6 +110,7 @@ Clay driver for sqlite
   + [driver.update()](#clay-driver-sqlite-classes-sqlite-driver-update)
   + [driver.destroy()](#clay-driver-sqlite-classes-sqlite-driver-destroy)
   + [driver.drop()](#clay-driver-sqlite-classes-sqlite-driver-drop)
+  + [driver.resources()](#clay-driver-sqlite-classes-sqlite-driver-resources)
 
 ## Functions
 
@@ -182,6 +183,12 @@ Constructor of SqliteDriver class
 <a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-drop" ></a>
 
 ### driver.drop()
+
+
+
+<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-resources" ></a>
+
+### driver.resources()
 
 
 
