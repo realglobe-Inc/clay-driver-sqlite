@@ -7,8 +7,9 @@
 const clayDriverTests = require('clay-driver-tests')
 const SqliteDriver = require('../lib/sqlite_driver.js')
 const { ok, equal, deepEqual } = require('assert')
-const rimraf = require('rimraf')
+const clayLump = require('clay-lump')
 const co = require('co')
+const filedel = require('filedel')
 
 describe('sqlite-driver', function () {
   this.timeout(13000)
@@ -23,12 +24,11 @@ describe('sqlite-driver', function () {
 
   it('Sqlite driver', () => co(function * () {
     let filename = `${__dirname}/../tmp/foo/bar/baz.db`
-    rimraf.sync(filename)
+    yield filedel(filename)
     let driver = new SqliteDriver(filename)
 
     let created = yield driver.create('users', {
-      username: 'okunishinishi',
-      // createdAt: new Date()
+      username: 'okunishinishi'
     })
     let created2 = yield driver.create('users', {
       username: 'hoge'
@@ -36,7 +36,6 @@ describe('sqlite-driver', function () {
     ok(created2.id !== created.id)
     ok(created.id)
     equal(created.username, 'okunishinishi')
-    console.log(created.createdAt)
 
     let one = yield driver.one('users', created.id)
 
@@ -71,12 +70,29 @@ describe('sqlite-driver', function () {
     equal((yield driver.list('users')).meta.total, 0)
   }))
 
-  // it('Run clayDriverTests', () => co(function * () {
-  //   let filename = `${__dirname}/../tmp/foo/bar/baz2.db`
-  //   rimraf.sync(filename)
-  //   let driver = new SqliteDriver(filename)
-  //   yield clayDriverTests.run(driver)
-  // }))
+  it('Run clayDriverTests', () => co(function * () {
+    let driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`)
+    yield clayDriverTests.run(driver)
+  }))
+
+  // https://github.com/realglobe-Inc/clay-driver-sqlite/issues/5
+  it('issues/5', () => co(function * () {
+    let filename = `${__dirname}/../tmp/test-issues-5.db`
+    yield filedel(filename)
+    const lump = clayLump('hec-eye-alpha', {
+      driver: new SqliteDriver(filename, {
+        logging: false
+      })
+    })
+    let User = lump.resource('user')
+    yield User.drop()
+    yield User.create({ name: 'hoge' })
+    let user = yield User.first({ name: 'hoge' })
+    let destroyed = yield User.destroy(user.id)
+    equal(destroyed, 1)
+    let mustBeNull = yield User.first({ name: 'hoge' })
+    ok(!mustBeNull)
+  }))
 })
 
 /* global describe, before, after, it */
