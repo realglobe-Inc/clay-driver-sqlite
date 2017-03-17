@@ -1,4 +1,4 @@
-# clay-driver-sqlite@2.0.2
+# clay-driver-sqlite@2.0.3
 
 Clay driver for sqlite
 
@@ -6,13 +6,6 @@ Clay driver for sqlite
   + [create(args)](#clay-driver-sqlite-function-create)
 + [`SqliteDriver`](#clay-driver-sqlite-classes) Class
   + [new SqliteDriver(filename, options)](#clay-driver-sqlite-classes-sqlite-driver-constructor)
-  + [driver.one()](#clay-driver-sqlite-classes-sqlite-driver-one)
-  + [driver.list()](#clay-driver-sqlite-classes-sqlite-driver-list)
-  + [driver.create()](#clay-driver-sqlite-classes-sqlite-driver-create)
-  + [driver.update()](#clay-driver-sqlite-classes-sqlite-driver-update)
-  + [driver.destroy()](#clay-driver-sqlite-classes-sqlite-driver-destroy)
-  + [driver.drop()](#clay-driver-sqlite-classes-sqlite-driver-drop)
-  + [driver.resources()](#clay-driver-sqlite-classes-sqlite-driver-resources)
 
 ## Functions
 
@@ -34,7 +27,7 @@ Create driver instance
 
 Driver to save data into sqlite
 
-**Extends**: 
+**Extends**:
 
 + `SequelizeDriver`
 
@@ -50,48 +43,6 @@ Constructor of SqliteDriver class
 | ----- | --- | -------- |
 | filename | string | Filename to save |
 | options | Object | Optional settings |
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-one" ></a>
-
-### driver.one()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-list" ></a>
-
-### driver.list()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-create" ></a>
-
-### driver.create()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-update" ></a>
-
-### driver.update()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-destroy" ></a>
-
-### driver.destroy()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-drop" ></a>
-
-### driver.drop()
-
-
-
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-resources" ></a>
-
-### driver.resources()
-
 
 
 
