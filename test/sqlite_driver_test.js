@@ -25,7 +25,10 @@ describe('sqlite-driver', function () {
   it('Sqlite driver', () => co(function * () {
     let filename = `${__dirname}/../tmp/foo/bar/baz.db`
     yield filedel(filename)
-    let driver = new SqliteDriver(filename)
+    let driver = new SqliteDriver(filename, {
+      logging: console.log,
+      benchmark: true
+    })
 
     let created = yield driver.create('users', {
       username: 'okunishinishi'
