@@ -96,6 +96,47 @@ describe('sqlite-driver', function () {
     let mustBeNull = yield User.first({ name: 'hoge' })
     ok(!mustBeNull)
   }))
+
+  // https://github.com/realglobe-Inc/clay-resource/issues/28
+  it('issues/28', () => co(function * () {
+    let filename = `${__dirname}/../tmp/test-issues-28.db`
+    yield filedel(filename)
+    const lump = clayLump('hec-eye-alpha', {
+      driver: new SqliteDriver(filename, {
+        logging: false
+      })
+    })
+    let Person = lump.resource('Person')
+    yield Person.createBulk([ {
+      pid: 1,
+      name: 'a',
+      age: 2
+    }, {
+      pid: 1,
+      name: 'b',
+      age: 1
+    }, {
+      pid: 1,
+      name: 'c',
+      age: 3
+    }, {
+      pid: 2,
+      name: 'd',
+      age: 6
+    } ])
+
+    {
+      let people = yield Person.list({ filter: { pid: 1 }, sort: [ 'age' ] })
+      let ages = people.entities.map(p => p.age)
+      deepEqual(ages, [ 1, 2, 3 ])
+    }
+
+    {
+      let people = yield Person.list({ filter: { pid: 1 }, sort: [ '-age' ] })
+      let ages = people.entities.map(p => p.age)
+      deepEqual(ages, [ 3, 2, 1 ])
+    }
+  }))
 })
 
 /* global describe, before, after, it */
