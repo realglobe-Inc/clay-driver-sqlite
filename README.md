@@ -96,14 +96,14 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@2.0.3
+# clay-driver-sqlite@2.0.4
 
 Clay driver for sqlite
 
 + Functions
   + [create(args)](#clay-driver-sqlite-function-create)
-+ [`SqliteDriver`](#clay-driver-sqlite-classes) Class
-  + [new SqliteDriver(filename, options)](#clay-driver-sqlite-classes-sqlite-driver-constructor)
++ [`SqliteDriver`](#clay-driver-sqlite-class) Class
+  + [new SqliteDriver(filename, options)](#clay-driver-sqlite-class-sqlite-driver-constructor)
 
 ## Functions
 
@@ -119,7 +119,7 @@ Create driver instance
 
 
 
-<a class='md-heading-link' name="clay-driver-sqlite-classes"></a>
+<a class='md-heading-link' name="clay-driver-sqlite-class"></a>
 
 ## `SqliteDriver` Class
 
@@ -131,7 +131,7 @@ Driver to save data into sqlite
 
 
 
-<a class='md-heading-link' name="clay-driver-sqlite-classes-sqlite-driver-constructor" ></a>
+<a class='md-heading-link' name="clay-driver-sqlite-class-sqlite-driver-constructor" ></a>
 
 ### new SqliteDriver(filename, options)
 
