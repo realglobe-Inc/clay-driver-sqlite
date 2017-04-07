@@ -2,13 +2,9 @@ language: node_js
 node_js:
 - '6'
 before_install:
-# TODO OSS
-# - npm i npm-cli-login -g
-# - npm-cli-login -u "${NPM_USER}" -p "${NPM_PASSWORD}" -e "${NPM_EMAIL}"
-# - npm who
-- echo "registry = https://realglobe.artifactoryonline.com/realglobe/api/npm/npm-virtual" > $HOME/.npmrc
-- curl -u${NPM_USER}:${NPM_PASSWORD} "https://realglobe.artifactoryonline.com/realglobe/api/npm/auth" >> $HOME/.npmrc
-- cat $HOME/.npmrc
+- npm i npm-cli-login -g
+- npm-cli-login -u "${NPM_USER}" -p "${NPM_PASSWORD}" -e "${NPM_EMAIL}"
+- npm who
 install:
 - npm install jsdoc -g
 - npm install
@@ -21,4 +17,4 @@ script:
 after_success:
 - ./ci/travis/publish.js
 env:
-  secure: "PrTqdYBQFsokbCDlO4DNlVJZZxwYDW1+ZNHf4joCLyrz9K2oGnvvAo7swcIePkB0ac7tQovuWoOnH2VtHt/vOIIAxza2HS9ea4XDH+bY7/ZUMrvnAGe5o7v3ylt3dlZuR41tb45PWx7bfBYM2j/S49uFybSJoOjkxf3svDT2Z9psCZ3g4/WXPT+ITOuKCsaby8YSM1nmkbW264bJNbEQezhRM5sAdjOScT+U/yVmWeRFNogDXpLo5DNi2ngecOfcRzFXKk15TN+BQb0UJ2j16mbNRd4zMeg02uzm1kvymL8u3fZC70k8CtzWEpFogiL+Sx3PYYEh+R4NRfsi56MacAdUzlTZHxs7I6gUQs0Yjp/WhwT+MaxHzCkG00pj2bNweZjrxTAO14+4JNPUl2THA4pS/elx3yGNQG+PqCOaTItDn4yVb/Q484y/UnzQGLGHB9RvgtkYtNFRtKNW597JXAMJLCktmzv7HlzYfuyJqGSWaYctrPtVWir3FF0w1DQQtHe3DqeBOmqLaL68p3R+0J0yH34uDau6lODwMlUBXcZe9kK0s18oE42pP/ZsMtpw5W4gRve9v/3hSbyoIs2Qgvjp3/jpzMK+9nhghghPd5HtBSMx/toMInMvOMI+m9kUqwtJjK/ztcKvGHN6cGMvQ5IkiwPDiM/7NvulX6NMe+I="
+  secure: "gQ8xdHkNNUzy/4zwMwjhj15XSHP2kuvPMRDru89Rfk7LMHqWIBohrPzMnupa0AoP7TFSVj9+4+pVFp2kN6lhoYUsoJOldz31zwntjkifUQoYEy2b3ZZ390hjB9PN22PuusL5LwTe0CtYNzpDBNr/3uRq+s/P/W+Cp7B3v6UUv2BfpRN27uoS2D06mghYr3pS6TNMfrjUQEylZN8bbZYitH/ePHPUZ29AdJyjLe8fsFo6/jhyGzTviVPyPoi+k79/zn3K717aAqqMwMiptTVgzvwzgRUh+ebi0raJOR4fqJBVZ2B1jkUuHYMypVNovdOwDhiqXBI8ABOjk9O4ToAkjo1gyfv0aUxQGgrzVqC8H2pXPy9zyRBbJyh69O3psZohh0fZrWPwvMCSZv9/A+fNWAo1Mz5eW/p4hOzV/SQF7Rzm85S8ovZJdH/oeauFx+7MXW6Zaw+0X7lstHyJFvqRfKjeoRnqh/0m97a9gmWlZLV1IWhvhifzy5aBUCGADBx3u9Ip3ZpmV0upFmWRzXCEpHSgIDkq4l84Huq/fUUVRPxpBdaJZdgoETa22vfca1i8DzjA/+5vGj+CluXpVJRjwgvreQbTWmGgRBjfmeS8/pMHm21Bgd3e4ghQN0ayPXLikvdiyBFlj4ExXhFH65lhAfEBTAwn4yrbwP0gi4nBAcI="
