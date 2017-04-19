@@ -137,6 +137,43 @@ describe('sqlite-driver', function () {
       deepEqual(ages, [ 3, 2, 1 ])
     }
   }))
+
+  it('Nested attribute and refs', () => co(function * () {
+    let driver = new SqliteDriver(`${__dirname}/../tmp/nested-attribute-and-refs.db`)
+    let d = new Date()
+    let created = yield driver.create('Foo', {
+      bar: {
+        b: false,
+        n: 1,
+        s: 'hoge',
+        d
+      }
+    })
+    equal(typeof created.bar.b, 'boolean')
+    equal(typeof created.bar.n, 'number')
+    equal(typeof created.bar.s, 'string')
+    ok(created.bar.d instanceof Date)
+
+    yield driver.drop('Foo')
+    yield driver.create('User', {
+      name: 'user01',
+      org: { $ref: 'Org#1' }
+    })
+    yield driver.create('User', {
+      name: 'user02',
+      org: { $ref: 'Org#2' }
+    })
+
+    let list = yield driver.list('User', {
+      filter: {
+        org: { $ref: 'Org#2' }
+      }
+    })
+    equal(list.meta.length, 1)
+    equal(list.entities[ 0 ].name, 'user02')
+
+    yield driver.drop('User')
+  }))
 })
 
 /* global describe, before, after, it */
