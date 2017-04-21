@@ -51,6 +51,25 @@
             "default": "{}",
             "optional": true,
             "nullable": ""
+          },
+          {
+            "name": "options.logging",
+            "type": [
+              "boolean",
+              "function"
+            ],
+            "description": "Logging option",
+            "default": "",
+            "optional": true,
+            "nullable": ""
+          },
+          {
+            "name": "options.benchmark",
+            "type": "boolean",
+            "description": "Show benchmark on log",
+            "default": "",
+            "optional": true,
+            "nullable": ""
           }
         ],
         "examples": []
