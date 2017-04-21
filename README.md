@@ -96,7 +96,7 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@3.0.0
+# clay-driver-sqlite@3.0.2
 
 Clay driver for sqlite
 
@@ -141,6 +141,8 @@ Constructor of SqliteDriver class
 | ----- | --- | -------- |
 | filename | string | Filename to save |
 | options | Object | Optional settings |
+| options.logging | boolean,function | Logging option |
+| options.benchmark | boolean | Show benchmark on log |
 
 
 

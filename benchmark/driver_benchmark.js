@@ -12,8 +12,8 @@ const storage = `${__dirname}/../tmp/benchmark-test.db`
 
 co(function * () {
   yield filedel(storage)
-  let dirver = new SqliteDriver(storage)
-  yield run(dirver)
+  let driver = new SqliteDriver(storage)
+  yield run(driver)
 }).catch((err) => {
   console.error(err)
   process.exit(1)
