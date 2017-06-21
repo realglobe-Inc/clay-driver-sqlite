@@ -23,29 +23,29 @@
   "homepage": "https://github.com/realglobe-Inc/clay-driver-sqlite#readme",
   "dependencies": {
     "asobj": "^1.5.0",
-    "clay-constants": "^3.0.2",
+    "clay-constants": "^3.0.3",
     "clay-driver-benchmarks": "^2.0.1",
-    "clay-driver-sequelize": "^3.0.5",
+    "clay-driver-sequelize": "^3.0.10",
     "co": "^4.6.0",
-    "mkdirp": "^0.5.1",
-    "sqlite3": "^3.1.8"
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "ababel": "^2.0.1",
-    "ababel-es2015": "^2.0.1",
+    "ababel": "^2.0.2",
+    "ababel-es2015": "^2.0.2",
     "amocha": "^2.0.0",
     "ape-formatting": "^1.0.2",
     "ape-releasing": "^4.0.4",
     "ape-tasking": "^4.0.9",
     "ape-tmpl": "^5.0.20",
     "ape-updating": "^4.1.1",
-    "clay-driver-tests": "^2.0.1",
-    "clay-lump": "^4.1.1",
+    "clay-driver-tests": "^2.0.2",
+    "clay-lump": "^4.2.3",
     "coz": "^6.0.20",
-    "filedel": "^2.0.5",
+    "filedel": "^3.0.0",
     "injectmock": "^2.0.0",
     "rimraf": "^2.6.1",
     "sg-templates": "^1.4.4",
+    "sqlite3": "^3.1.8",
     "sugos-travis": "^2.0.7"
   },
   "engines": {
