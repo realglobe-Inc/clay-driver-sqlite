@@ -1,6 +1,6 @@
 {
   "name": "clay-driver-sqlite",
-  "version": "3.0.6",
+  "version": "4.0.0",
   "description": "Clay driver for sqlite",
   "main": "lib",
   "scripts": {
@@ -25,7 +25,7 @@
     "asobj": "^1.5.0",
     "clay-constants": "^3.0.3",
     "clay-driver-benchmarks": "^2.0.1",
-    "clay-driver-sequelize": "^3.0.13",
+    "clay-driver-sequelize": "^4.0.2",
     "co": "^4.6.0",
     "mkdirp": "^0.5.1"
   },

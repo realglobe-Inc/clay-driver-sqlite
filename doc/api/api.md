@@ -1,4 +1,4 @@
-# clay-driver-sqlite@3.0.5
+# clay-driver-sqlite@4.0.0
 
 Clay driver for sqlite
 
