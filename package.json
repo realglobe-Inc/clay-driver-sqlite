@@ -1,6 +1,6 @@
 {
   "name": "clay-driver-sqlite",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Clay driver for sqlite",
   "main": "lib",
   "scripts": {
