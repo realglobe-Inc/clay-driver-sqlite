@@ -14,100 +14,100 @@ const filedel = require('filedel')
 describe('sqlite-driver', function () {
   this.timeout(13000)
 
-  before(() => co(function * () {
+  before(async () => {
 
-  }))
+  })
 
-  after(() => co(function * () {
+  after(async () => {
 
-  }))
+  })
 
-  it('Sqlite driver', () => co(function * () {
+  it('Sqlite driver', async () => {
     let filename = `${__dirname}/../tmp/foo/bar/baz.db`
-    yield filedel(filename)
+    await filedel(filename)
     let driver = new SqliteDriver(filename, {
       logging: console.log,
       benchmark: true
     })
 
-    let created = yield driver.create('users', {
+    let created = await driver.create('users', {
       username: 'okunishinishi'
     })
-    let created2 = yield driver.create('users', {
+    let created2 = await driver.create('users', {
       username: 'hoge'
     })
     ok(created2.id !== created.id)
     ok(created.id)
     equal(created.username, 'okunishinishi')
 
-    let one = yield driver.one('users', created.id)
+    let one = await driver.one('users', created.id)
 
     equal(String(created.id), String(one.id))
 
-    let updated = yield driver.update('users', one.id, {
+    let updated = await driver.update('users', one.id, {
       password: 'hogehoge'
     })
     equal(String(updated.id), String(one.id))
     equal(updated.password, 'hogehoge')
 
-    let list01 = yield driver.list('users', {})
+    let list01 = await driver.list('users', {})
     deepEqual(list01.meta, { offset: 0, limit: 100, length: 2, total: 2 })
 
-    let list02 = yield driver.list('users', {
+    let list02 = await driver.list('users', {
       filter: { username: 'okunishinishi' }
     })
     deepEqual(list02.meta, { offset: 0, limit: 100, length: 1, total: 1 })
 
-    let list03 = yield driver.list('users', {
+    let list03 = await driver.list('users', {
       page: { size: 1, number: 1 }
     })
     deepEqual(list03.meta, { offset: 0, limit: 1, length: 1, total: 2 })
 
-    let destroyed = yield driver.destroy('users', one.id)
+    let destroyed = await driver.destroy('users', one.id)
     equal(destroyed, 1)
-    let destroyed2 = yield driver.destroy('users', one.id)
+    let destroyed2 = await driver.destroy('users', one.id)
     equal(destroyed2, 0)
 
-    equal((yield driver.list('users')).meta.total, 1)
-    yield driver.drop('users')
-    equal((yield driver.list('users')).meta.total, 0)
-  }))
+    equal((await driver.list('users')).meta.total, 1)
+    await driver.drop('users')
+    equal((await driver.list('users')).meta.total, 0)
+  })
 
-  it('Run clayDriverTests', () => co(function * () {
+  it('Run clayDriverTests', async () => {
     let driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`)
-    yield clayDriverTests.run(driver)
-  }))
+    await clayDriverTests.run(driver)
+  })
 
   // https://github.com/realglobe-Inc/clay-driver-sqlite/issues/5
-  it('issues/5', () => co(function * () {
+  it('issues/5', async () => {
     let filename = `${__dirname}/../tmp/test-issues-5.db`
-    yield filedel(filename)
+    await filedel(filename)
     const lump = clayLump('hec-eye-alpha', {
       driver: new SqliteDriver(filename, {
         logging: false
       })
     })
     let User = lump.resource('user')
-    yield User.drop()
-    yield User.create({ name: 'hoge' })
-    let user = yield User.first({ name: 'hoge' })
-    let destroyed = yield User.destroy(user.id)
+    await User.drop()
+    await User.create({ name: 'hoge' })
+    let user = await User.first({ name: 'hoge' })
+    let destroyed = await User.destroy(user.id)
     equal(destroyed, 1)
-    let mustBeNull = yield User.first({ name: 'hoge' })
+    let mustBeNull = await User.first({ name: 'hoge' })
     ok(!mustBeNull)
-  }))
+  })
 
   // https://github.com/realglobe-Inc/clay-resource/issues/28
-  it('issues/28', () => co(function * () {
+  it('issues/28', async () => {
     let filename = `${__dirname}/../tmp/test-issues-28.db`
-    yield filedel(filename)
+    await filedel(filename)
     const lump = clayLump('hec-eye-alpha', {
       driver: new SqliteDriver(filename, {
         logging: false
       })
     })
     let Person = lump.resource('Person')
-    yield Person.createBulk([ {
+    await Person.createBulk([ {
       pid: 1,
       name: 'a',
       age: 2
@@ -126,22 +126,22 @@ describe('sqlite-driver', function () {
     } ])
 
     {
-      let people = yield Person.list({ filter: { pid: 1 }, sort: [ 'age' ] })
+      let people = await Person.list({ filter: { pid: 1 }, sort: [ 'age' ] })
       let ages = people.entities.map(p => p.age)
       deepEqual(ages, [ 1, 2, 3 ])
     }
 
     {
-      let people = yield Person.list({ filter: { pid: 1 }, sort: [ '-age' ] })
+      let people = await Person.list({ filter: { pid: 1 }, sort: [ '-age' ] })
       let ages = people.entities.map(p => p.age)
       deepEqual(ages, [ 3, 2, 1 ])
     }
-  }))
+  })
 
-  it('Nested attribute and refs', () => co(function * () {
+  it('Nested attribute and refs', async () => {
     let driver = new SqliteDriver(`${__dirname}/../tmp/nested-attribute-and-refs.db`)
     let d = new Date()
-    let created = yield driver.create('Foo', {
+    let created = await driver.create('Foo', {
       bar: {
         b: false,
         n: 1,
@@ -154,17 +154,17 @@ describe('sqlite-driver', function () {
     equal(typeof created.bar.s, 'string')
     ok(created.bar.d instanceof Date)
 
-    yield driver.drop('Foo')
-    yield driver.create('User', {
+    await driver.drop('Foo')
+    await driver.create('User', {
       name: 'user01',
       org: { $ref: 'Org#1' }
     })
-    yield driver.create('User', {
+    await driver.create('User', {
       name: 'user02',
       org: { $ref: 'Org#2' }
     })
 
-    let list = yield driver.list('User', {
+    let list = await driver.list('User', {
       filter: {
         org: { $ref: 'Org#2' }
       }
@@ -172,8 +172,8 @@ describe('sqlite-driver', function () {
     equal(list.meta.length, 1)
     equal(list.entities[ 0 ].name, 'user02')
 
-    yield driver.drop('User')
-  }))
+    await driver.drop('User')
+  })
 })
 
 /* global describe, before, after, it */

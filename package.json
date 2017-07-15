@@ -24,9 +24,7 @@
   "dependencies": {
     "asobj": "^1.5.0",
     "clay-constants": "^3.0.3",
-    "clay-driver-benchmarks": "^2.0.1",
-    "clay-driver-sequelize": "^5.0.1",
-    "co": "^4.6.0",
+    "clay-driver-sequelize": "^5.0.2",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
@@ -38,6 +36,7 @@
     "ape-tasking": "^4.0.9",
     "ape-tmpl": "^5.0.20",
     "ape-updating": "^4.1.1",
+    "clay-driver-benchmarks": "^2.0.1",
     "clay-driver-tests": "^2.0.2",
     "clay-lump": "^4.2.4",
     "coz": "^6.0.20",
@@ -50,7 +49,7 @@
     "the-script-jsdoc": "^1.0.8"
   },
   "engines": {
-    "node": ">=6",
+    "node": ">=7.6",
     "npm": ">=4"
   }
 }
