@@ -24,7 +24,7 @@
   "dependencies": {
     "asobj": "^1.5.0",
     "clay-constants": "^3.0.3",
-    "clay-driver-sequelize": "^5.0.2",
+    "clay-driver-sequelize": "^5.0.8",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
