@@ -1,6 +1,6 @@
 {
   "name": "clay-driver-sqlite",
-  "version": "6.2.7",
+  "version": "6.3.0",
   "description": "Clay driver for sqlite",
   "main": "lib",
   "scripts": {
@@ -22,10 +22,13 @@
   },
   "homepage": "https://github.com/realglobe-Inc/clay-driver-sqlite#readme",
   "dependencies": {
+    "amkdirp": "^2.0.0",
     "asobj": "^2.0.1",
-    "clay-constants": "^3.3.1",
+    "clay-constants": "^3.4.2",
     "clay-driver-sequelize": "^6.4.2",
-    "mkdirp": "^0.5.1"
+    "filecopy": "^4.0.0",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.19.1"
   },
   "devDependencies": {
     "ababel": "^2.0.2",

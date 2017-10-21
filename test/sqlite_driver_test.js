@@ -71,6 +71,11 @@ describe('sqlite-driver', function () {
     equal((await driver.list('users')).meta.total, 1)
     await driver.drop('users')
     equal((await driver.list('users')).meta.total, 0)
+
+    await driver.dump(
+      `${__dirname}/../tmp/testing-dump`
+    )
+
   })
 
   it('Run clayDriverTests', async () => {
