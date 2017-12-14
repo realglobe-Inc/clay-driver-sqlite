@@ -178,6 +178,8 @@ describe('sqlite-driver', function () {
     equal(list.entities[0].name, 'user02')
 
     await driver.drop('User')
+
+    await driver.close()
   })
 })
 
