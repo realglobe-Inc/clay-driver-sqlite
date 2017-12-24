@@ -25,10 +25,10 @@
     "amkdirp": "^2.0.0",
     "asobj": "^2.0.2",
     "clay-constants": "^3.4.4",
-    "clay-driver-sequelize": "^6.4.19",
+    "clay-driver-sequelize": "^6.4.21",
     "filecopy": "^4.0.0",
     "mkdirp": "^0.5.1",
-    "moment": "^2.19.4"
+    "moment": "^2.20.1"
   },
   "devDependencies": {
     "ababel": "^2.0.3",
@@ -41,9 +41,9 @@
     "ape-updating": "^4.1.1",
     "clay-driver-benchmarks": "^2.0.3",
     "clay-driver-tests": "^2.0.2",
-    "clay-lump": "^4.2.23",
+    "clay-lump": "^4.2.24",
     "coz": "^6.0.20",
-    "eslint": "^4.13.1",
+    "eslint": "^4.14.0",
     "filedel": "^4.0.0",
     "injectmock": "^2.0.0",
     "rimraf": "^2.6.2",
