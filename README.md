@@ -96,7 +96,7 @@ const { SqliteDriver } = require('clay-driver-sqlite')
 API
 ---------
 
-# clay-driver-sqlite@6.3.8
+# clay-driver-sqlite@6.3.9
 
 Clay driver for sqlite
 
