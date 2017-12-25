@@ -25,7 +25,7 @@
     "amkdirp": "^2.0.0",
     "asobj": "^2.0.2",
     "clay-constants": "^3.4.4",
-    "clay-driver-sequelize": "^6.4.22",
+    "clay-driver-sequelize": "^6.4.23",
     "filecopy": "^4.0.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.20.1"
