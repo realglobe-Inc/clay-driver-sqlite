@@ -8,7 +8,7 @@ const clayDriverTests = require('clay-driver-tests')
 const SqliteDriver = require('../lib/sqlite_driver.js')
 const {ok, equal, deepEqual} = require('assert')
 const clayLump = require('clay-lump')
-const co = require('co')
+const asleep = require('asleep')
 const filedel = require('filedel')
 
 describe('sqlite-driver', function () {
@@ -40,6 +40,7 @@ describe('sqlite-driver', function () {
     ok(created.id)
     equal(created.username, 'okunishinishi')
 
+    await asleep(100)
     let one = await driver.one('users', created.id)
 
     equal(String(created.id), String(one.id))
@@ -50,6 +51,7 @@ describe('sqlite-driver', function () {
     equal(String(updated.id), String(one.id))
     equal(updated.password, 'hogehoge')
 
+    await asleep(100)
     let list01 = await driver.list('users', {})
     deepEqual(list01.meta, {offset: 0, limit: 100, length: 2, total: 2})
 
@@ -58,6 +60,7 @@ describe('sqlite-driver', function () {
     })
     deepEqual(list02.meta, {offset: 0, limit: 100, length: 1, total: 1})
 
+    await asleep(100)
     let list03 = await driver.list('users', {
       page: {size: 1, number: 1}
     })
@@ -72,6 +75,7 @@ describe('sqlite-driver', function () {
     await driver.drop('users')
     equal((await driver.list('users')).meta.total, 0)
 
+    await asleep(100)
     await driver.dump(
       `${__dirname}/../tmp/testing-dump`
     )
@@ -79,7 +83,9 @@ describe('sqlite-driver', function () {
   })
 
   it('Run clayDriverTests', async () => {
-    let driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`)
+    const driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`, {
+      retry: () => ({max: 15})
+    })
     await clayDriverTests.run(driver)
   })
 
@@ -95,6 +101,7 @@ describe('sqlite-driver', function () {
     let User = lump.resource('user')
     await User.drop()
     await User.create({name: 'hoge'})
+    await asleep(100)
     let user = await User.first({name: 'hoge'})
     let destroyed = await User.destroy(user.id)
     equal(destroyed, 1)
@@ -111,6 +118,7 @@ describe('sqlite-driver', function () {
         logging: false
       })
     })
+    await asleep(100)
     let Person = lump.resource('Person')
     await Person.createBulk([{
       pid: 1,
@@ -144,9 +152,9 @@ describe('sqlite-driver', function () {
   })
 
   it('Nested attribute and refs', async () => {
-    let driver = new SqliteDriver(`${__dirname}/../tmp/nested-attribute-and-refs.db`)
-    let d = new Date()
-    let created = await driver.create('Foo', {
+    const driver = new SqliteDriver(`${__dirname}/../tmp/nested-attribute-and-refs.db`)
+    const d = new Date()
+    const created = await driver.create('Foo', {
       bar: {
         b: false,
         n: 1,
@@ -158,7 +166,7 @@ describe('sqlite-driver', function () {
     equal(typeof created.bar.n, 'number')
     equal(typeof created.bar.s, 'string')
     ok(created.d instanceof Date)
-
+    await asleep(100)
     await driver.drop('Foo')
     await driver.create('User', {
       name: 'user01',
@@ -176,7 +184,7 @@ describe('sqlite-driver', function () {
     })
     equal(list.meta.length, 1)
     equal(list.entities[0].name, 'user02')
-
+    await asleep(100)
     await driver.drop('User')
 
     await driver.close()
