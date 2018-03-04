@@ -23,10 +23,10 @@ describe('sqlite-driver', function () {
   })
 
   it('Sqlite driver', async () => {
-    let filename = `${__dirname}/../tmp/foo/bar/baz.db`
+    const filename = `${__dirname}/../tmp/foo/bar/baz.db`
     await filedel(filename)
-    let driver = new SqliteDriver(filename, {
-      logging: console.log,
+    const driver = new SqliteDriver(filename, {
+      logging: false,
       benchmark: true
     })
 
@@ -40,35 +40,32 @@ describe('sqlite-driver', function () {
     ok(created.id)
     equal(created.username, 'okunishinishi')
 
-    await asleep(100)
-    let one = await driver.one('users', created.id)
+    const one = await driver.one('users', created.id)
 
     equal(String(created.id), String(one.id))
 
-    let updated = await driver.update('users', one.id, {
+    const updated = await driver.update('users', one.id, {
       password: 'hogehoge'
     })
     equal(String(updated.id), String(one.id))
     equal(updated.password, 'hogehoge')
 
-    await asleep(100)
-    let list01 = await driver.list('users', {})
+    const list01 = await driver.list('users', {})
     deepEqual(list01.meta, {offset: 0, limit: 100, length: 2, total: 2})
 
-    let list02 = await driver.list('users', {
+    const list02 = await driver.list('users', {
       filter: {username: 'okunishinishi'}
     })
     deepEqual(list02.meta, {offset: 0, limit: 100, length: 1, total: 1})
 
-    await asleep(100)
-    let list03 = await driver.list('users', {
+    const list03 = await driver.list('users', {
       page: {size: 1, number: 1}
     })
     deepEqual(list03.meta, {offset: 0, limit: 1, length: 1, total: 2})
 
-    let destroyed = await driver.destroy('users', one.id)
+    const destroyed = await driver.destroy('users', one.id)
     equal(destroyed, 1)
-    let destroyed2 = await driver.destroy('users', one.id)
+    const destroyed2 = await driver.destroy('users', one.id)
     equal(destroyed2, 0)
 
     equal((await driver.list('users')).meta.total, 1)
@@ -84,34 +81,33 @@ describe('sqlite-driver', function () {
 
   it('Run clayDriverTests', async () => {
     const driver = new SqliteDriver(`${__dirname}/../tmp/foo/bar/baz.db`, {
-      retry: () => ({max: 15})
     })
     await clayDriverTests.run(driver)
   })
 
   // https://github.com/realglobe-Inc/clay-driver-sqlite/issues/5
   it('issues/5', async () => {
-    let filename = `${__dirname}/../tmp/test-issues-5.db`
+    const filename = `${__dirname}/../tmp/test-issues-5.db`
     await filedel(filename)
     const lump = clayLump('hec-eye-alpha', {
       driver: new SqliteDriver(filename, {
         logging: false
       })
     })
-    let User = lump.resource('user')
+    const User = lump.resource('user')
     await User.drop()
     await User.create({name: 'hoge'})
     await asleep(100)
-    let user = await User.first({name: 'hoge'})
-    let destroyed = await User.destroy(user.id)
+    const user = await User.first({name: 'hoge'})
+    const destroyed = await User.destroy(user.id)
     equal(destroyed, 1)
-    let mustBeNull = await User.first({name: 'hoge'})
+    const mustBeNull = await User.first({name: 'hoge'})
     ok(!mustBeNull)
   })
 
   // https://github.com/realglobe-Inc/clay-resource/issues/28
   it('issues/28', async () => {
-    let filename = `${__dirname}/../tmp/test-issues-28.db`
+    const filename = `${__dirname}/../tmp/test-issues-28.db`
     await filedel(filename)
     const lump = clayLump('hec-eye-alpha', {
       driver: new SqliteDriver(filename, {
