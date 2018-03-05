@@ -23,9 +23,9 @@
   "homepage": "https://github.com/realglobe-Inc/clay-driver-sqlite#readme",
   "dependencies": {
     "amkdirp": "^2.0.0",
-    "asobj": "^2.0.10",
+    "asobj": "^2.1.0",
     "clay-constants": "^3.4.4",
-    "clay-driver-sequelize": "^6.4.34",
+    "clay-driver-sequelize": "^6.4.35",
     "filecopy": "^4.0.1",
     "mkdirp": "^0.5.1",
     "moment": "^2.21.0"
