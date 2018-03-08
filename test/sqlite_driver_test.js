@@ -12,7 +12,7 @@ const asleep = require('asleep')
 const filedel = require('filedel')
 
 describe('sqlite-driver', function () {
-  this.timeout(13000)
+  this.timeout(130000)
 
   before(async () => {
 
