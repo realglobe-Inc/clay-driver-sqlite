@@ -20,82 +20,9 @@
                 "type": "SqliteDriver",
                 "description": ""
             }
-        },
-        {
-            "name": "create",
-            "access": "",
-            "virtual": false,
-            "description": "Create driver instance",
-            "parameters": [
-                {
-                    "name": "args",
-                    "type": "*",
-                    "description": "",
-                    "default": "",
-                    "optional": "",
-                    "nullable": ""
-                }
-            ],
-            "examples": [],
-            "returns": {
-                "type": "SqliteDriver",
-                "description": ""
-            }
         }
     ],
     "classes": [
-        {
-            "name": "SqliteDriver",
-            "description": "",
-            "extends": [
-                "SequelizeDriver"
-            ],
-            "access": "",
-            "virtual": false,
-            "fires": "",
-            "constructor": {
-                "name": "SqliteDriver",
-                "description": "Driver to save data into sqlite",
-                "parameters": [
-                    {
-                        "name": "filename",
-                        "type": "string",
-                        "description": "Filename to save",
-                        "default": "",
-                        "optional": "",
-                        "nullable": ""
-                    },
-                    {
-                        "name": "options",
-                        "type": "Object",
-                        "description": "Optional settings",
-                        "default": "{}",
-                        "optional": true,
-                        "nullable": ""
-                    },
-                    {
-                        "name": "options.logging",
-                        "type": [
-                            "boolean",
-                            "function"
-                        ],
-                        "description": "Logging option",
-                        "default": "",
-                        "optional": true,
-                        "nullable": ""
-                    },
-                    {
-                        "name": "options.benchmark",
-                        "type": "boolean",
-                        "description": "Show benchmark on log",
-                        "default": "",
-                        "optional": true,
-                        "nullable": ""
-                    }
-                ],
-                "examples": []
-            }
-        },
         {
             "name": "SqliteDriver",
             "description": "",
